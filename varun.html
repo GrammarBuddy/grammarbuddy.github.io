@@ -84,11 +84,11 @@ nav .links{display:flex;gap:1.1rem;overflow-x:auto}
 .gal img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .25s}.gal button:hover img{transform:scale(1.04)}
 /* certificate slideshow */
 .car{position:relative}
-.track{display:flex;gap:1rem;overflow-x:auto;scroll-snap-type:x mandatory;scroll-behavior:smooth;padding:.3rem .2rem 1rem;scrollbar-width:thin;scrollbar-color:var(--accent) var(--line)}
-.track>button{flex:0 0 min(82%,440px);height:340px;scroll-snap-align:center;padding:.6rem;border:1px solid var(--line);border-radius:10px;background:var(--surface);cursor:pointer}
+.track{position:relative;display:flex;gap:1rem;overflow-x:auto;scroll-snap-type:x mandatory;scroll-behavior:smooth;padding:.3rem calc(50% - min(40vw,220px)) 1rem;scrollbar-width:thin;scrollbar-color:var(--accent) var(--line)}
+.track>button{flex:0 0 min(80vw,440px);height:340px;scroll-snap-align:center;padding:.6rem;border:1px solid var(--line);border-radius:10px;background:var(--surface);cursor:pointer}
 .track>button:hover{border-color:var(--accent)}
 .track img{width:100%;height:100%;object-fit:contain;display:block}
-.track>.empty{flex:1}
+.track>.empty{flex:0 0 min(80vw,440px)}
 .cn{position:absolute;top:calc(50% - 1rem);transform:translateY(-50%);z-index:2;width:46px;height:46px;border-radius:50%;border:0;background:var(--accent);color:#14213d;font-size:1.7rem;line-height:1;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.3)}
 .cn.p{left:-.6rem}.cn.n{right:-.6rem}
 @media(max-width:720px){.cn{display:none}.track>button{height:280px}}
@@ -118,7 +118,7 @@ footer{background:var(--deep);color:#8d98b4;text-align:center;padding:1.2rem;fon
 <div>
 <h1>Varun <span>K</span></h1>
 <p class="lead">Principal at Amrit Vidya Ashram, Fatehpur. An academic leader who brings technology, creativity and sound systems into schools.</p>
-<a class="btn pri" href="#videos">Watch my videos</a><a class="btn sec cv" href="#" target="_blank" rel="noopener" hidden>View CV</a>
+<a class="btn pri" href="#videos" data-play="1">Self Intro Video</a><a class="btn sec" href="#videos" data-play="2">Demo Video</a><a class="btn sec cv" href="#" target="_blank" rel="noopener" hidden>View CV</a>
 <div class="award"><span>Educational Reformer of the Year 2021, Times of India</span></div>
 </div>
 <div class="photo" aria-label="Portrait of Varun K">VK<img id="pimg" alt="Varun K" hidden></div>
@@ -207,13 +207,13 @@ footer{background:var(--deep);color:#8d98b4;text-align:center;padding:1.2rem;fon
 /* ====== EDIT THIS SECTION ======
    Pictures and CV live in Google Drive. For each file: right-click > Share > set to
    "Anyone with the link", copy the link, and paste it below. Full links or bare file IDs both work.
-   VIDEOS: paste the YouTube video ID (the part after v= in the link) in "id". */
+   VIDEOS: paste the YouTube video ID (the part after v= in the link) in "id", or a Drive video file ID in "drive". */
 const PROFILE = "https://drive.google.com/file/d/1VKtKdCxpZIByctEN6cXeyVdbJkn1RvWH/view";   // Drive link to your portrait
 const CV_URL  = "";   // Drive link to your CV (PDF); the CV buttons stay hidden until this is filled
 const VIDEOS = [
   {id:"9YBPypThWTo", title:"Safe Diwali: a mime by students of Class VII and VIII", caption:"Choreographed by me. Over 63,000 views, used as a reference by schools across Tamil Nadu and replicated more than 250 times."},
-  {id:"", title:"Self-introduction", caption:"A short introduction to my work and approach"},
-  {id:"", title:"Demo video", caption:"A walkthrough of student projects and school tools"}
+  {drive:"1bzjZ8maFpFhFfdPSqFuzzrNyfKHpd8kO", title:"Self Intro Video", caption:"A short introduction to my work and approach"},
+  {drive:"17H0A3TLCDjZ6OlE3bzQ9fVgzPkfEAeLQ", title:"Demo Video", caption:"A walkthrough of student projects and school tools"}
 ];
 const GALLERY = [
   // {src:"https://drive.google.com/file/d/FILE_ID/view", cat:"Events", cap:"Annual Day"},
@@ -259,8 +259,12 @@ $("#tl").innerHTML=ROLES.map(r=>`<div class="role${r.lead?" lead":""}"><button a
 document.querySelectorAll(".role button").forEach(b=>b.onclick=()=>{const p=b.parentElement,o=p.classList.toggle("open");b.setAttribute("aria-expanded",o)});
 
 /* videos */
-$("#vids").innerHTML=VIDEOS.map((v,i)=>v.id?`<button class="vcard" data-i="${i}"><div class="th" style="background-image:url(https://i.ytimg.com/vi/${esc(v.id)}/hqdefault.jpg)"></div><div class="tx"><h3>${esc(v.title)}</h3><p>${esc(v.caption)}</p></div></button>`:`<div class="empty">Video ${i+1}: add a YouTube ID in index.html</div>`).join("");
-document.querySelectorAll(".vcard").forEach(b=>b.onclick=()=>{const v=VIDEOS[b.dataset.i];openDlg(`<iframe src="https://www.youtube-nocookie.com/embed/${encodeURIComponent(v.id)}?autoplay=1&rel=0" title="${esc(v.title)}" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe>`,v.title)});
+const vthumb=v=>v.id?`https://i.ytimg.com/vi/${v.id}/hqdefault.jpg`:pic(v.drive,640);
+const vsrc=v=>v.id?`https://www.youtube-nocookie.com/embed/${encodeURIComponent(v.id)}?autoplay=1&rel=0`:`https://drive.google.com/file/d/${encodeURIComponent(v.drive)}/preview`;
+function play(i){const v=VIDEOS[i];if(!v||!(v.id||v.drive))return;openDlg(`<iframe src="${esc(vsrc(v))}" title="${esc(v.title)}" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe>`,v.title)}
+$("#vids").innerHTML=VIDEOS.map((v,i)=>(v.id||v.drive)?`<button class="vcard" data-i="${i}"><div class="th" style="background-image:url(${esc(vthumb(v))})"></div><div class="tx"><h3>${esc(v.title)}</h3><p>${esc(v.caption)}</p></div></button>`:`<div class="empty">Video ${i+1}: add a YouTube ID in index.html</div>`).join("");
+document.querySelectorAll(".vcard").forEach(b=>b.onclick=()=>play(+b.dataset.i));
+document.querySelectorAll("[data-play]").forEach(a=>a.onclick=e=>{e.preventDefault();play(+a.dataset.play)});
 
 /* gallery + certs */
 function tiles(el,list){el.innerHTML=list.length?list.map((g,i)=>`<button data-i="${i}" aria-label="${esc(g.cap||"Open image")}"><img src="${esc(pic(g.src,600))}" alt="${esc(g.cap||"")}" loading="lazy"></button>`).join(""):`<div class="empty">Add Google Drive links to the list in this file</div>`;
@@ -270,8 +274,10 @@ function showCat(c){tiles($("#gal"),c==="All"?GALLERY:GALLERY.filter(g=>g.cat===
 $("#chips").innerHTML=cats.length>2?cats.map(c=>`<button class="chip">${esc(c)}</button>`).join(""):"";
 document.querySelectorAll(".chip").forEach(c=>c.onclick=()=>showCat(c.textContent));
 showCat("All");tiles($("#certs"),CERTS);
-const trk=$("#certs");$("#cprev").onclick=()=>trk.scrollBy({left:-trk.clientWidth*.8});$("#cnext").onclick=()=>trk.scrollBy({left:trk.clientWidth*.8});
-trk.addEventListener("keydown",e=>{if(e.key==="ArrowRight")trk.scrollBy({left:trk.clientWidth*.5});if(e.key==="ArrowLeft")trk.scrollBy({left:-trk.clientWidth*.5})});
+const trk=$("#certs");
+function go(d){const sl=[...trk.children].filter(e=>e.tagName==="BUTTON");if(!sl.length)return;const c=trk.scrollLeft+trk.clientWidth/2;let cur=0,best=1e9;sl.forEach((e,i)=>{const m=Math.abs(e.offsetLeft+e.offsetWidth/2-c);if(m<best){best=m;cur=i}});const n=Math.max(0,Math.min(sl.length-1,cur+d));trk.scrollTo({left:sl[n].offsetLeft+sl[n].offsetWidth/2-trk.clientWidth/2,behavior:"smooth"})}
+$("#cprev").onclick=()=>go(-1);$("#cnext").onclick=()=>go(1);
+trk.addEventListener("keydown",e=>{if(e.key==="ArrowRight"){e.preventDefault();go(1)}if(e.key==="ArrowLeft"){e.preventDefault();go(-1)}});
 
 /* counters */
 const yrs=new Date().getFullYear()-2001;
