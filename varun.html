@@ -35,6 +35,7 @@ nav .links{display:flex;gap:1.1rem;overflow-x:auto}
 .hero h1 span{display:block;color:var(--accent)}
 .hero p.lead{font-size:1.25rem;max-width:34ch;margin:1.4rem 0 1.8rem;color:#d3d9e8}
 .btn{display:inline-block;padding:.75rem 1.3rem;border-radius:8px;font-weight:600;text-decoration:none;border:2px solid var(--accent);margin:0 .6rem .6rem 0}
+button.btn{font:inherit;font-weight:600;cursor:pointer;background:transparent}
 .btn.pri{background:var(--accent);color:var(--accent-ink)}.btn.sec{color:var(--deep-ink)}
 .photo{aspect-ratio:4/5;border-radius:6px;border:3px solid var(--accent);background:#22305a;overflow:hidden;display:grid;place-items:center;font:800 5rem "Bricolage Grotesque",sans-serif;color:var(--accent);position:relative}
 .photo img{width:100%;height:100%;object-fit:cover;position:absolute;inset:0}
@@ -75,6 +76,9 @@ nav .links{display:flex;gap:1.1rem;overflow-x:auto}
 .vcard .th::after{content:"";width:62px;height:62px;border-radius:50%;background:var(--accent) no-repeat center/26px url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%2314213d' d='M8 5v14l11-7z'/%3E%3C/svg%3E")}
 .vcard div.tx{padding:1rem 1.2rem}.vcard h3{font-size:1.1rem}.vcard p{margin:.3rem 0 0;color:var(--muted);font-size:.95rem}
 .empty{border:2px dashed var(--line);border-radius:10px;padding:1.4rem;color:var(--muted);display:grid;place-items:center;text-align:center;min-height:150px}
+.gal .fbt{display:grid;place-content:center;gap:.3rem;text-align:center;background:linear-gradient(135deg,#22305a,#14213d);color:#fff;font:inherit;padding:1rem}
+.gal .fbt small{color:var(--accent)}
+dialog iframe.fbp{aspect-ratio:auto;height:640px;max-width:500px;margin:0 auto;background:#fff}
 /* gallery */
 .chips{display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:1.2rem}
 .chip{border:1px solid var(--line);background:var(--surface);color:var(--ink);border-radius:99px;padding:.3rem .95rem;cursor:pointer;font:inherit;font-size:.93rem}
@@ -92,11 +96,17 @@ nav .links{display:flex;gap:1.1rem;overflow-x:auto}
 .cn{position:absolute;top:calc(50% - 1rem);transform:translateY(-50%);z-index:2;width:46px;height:46px;border-radius:50%;border:0;background:var(--accent);color:#14213d;font-size:1.7rem;line-height:1;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.3)}
 .cn.p{left:-.6rem}.cn.n{right:-.6rem}
 @media(max-width:720px){.cn{display:none}.track>button{height:280px}}
+.track>button.sl{height:300px;padding:0;overflow:hidden;position:relative;background:linear-gradient(135deg,#22305a,#14213d);color:#fff;text-align:left}
+.sl img{position:absolute;inset:0;object-fit:cover}
+.sl .cap{position:absolute;left:0;right:0;bottom:0;padding:.8rem 1rem;background:rgba(10,16,32,.55);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
+.sl .cap b{display:block;font:700 1.05rem "Bricolage Grotesque",sans-serif}.sl .cap span{font-size:.9rem;opacity:.92}
+.sl.vid::after{content:"";position:absolute;left:50%;top:42%;width:62px;height:62px;transform:translate(-50%,-50%);border-radius:50%;background:var(--accent) no-repeat center/26px url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%2314213d' d='M8 5v14l11-7z'/%3E%3C/svg%3E")}
 /* modal */
 dialog{border:0;padding:0;background:transparent;max-width:min(960px,94vw);width:100%;color:#fff}
 dialog::backdrop{background:rgba(5,9,20,.85)}
-dialog .box{position:relative}
-dialog .x{position:absolute;right:0;top:-2.8rem;background:var(--accent);color:#14213d;border:0;border-radius:8px;padding:.35rem .9rem;font:600 1rem "Public Sans",sans-serif;cursor:pointer}
+dialog{overflow:visible}
+dialog .box{position:relative;padding-top:3rem}
+dialog .x{position:absolute;right:0;top:0;background:var(--accent);color:#14213d;border:0;border-radius:8px;padding:.35rem .9rem;font:600 1rem "Public Sans",sans-serif;cursor:pointer}
 dialog iframe{width:100%;aspect-ratio:16/9;border:0;border-radius:8px;background:#000;display:block}
 dialog img{max-width:100%;max-height:82vh;display:block;margin:0 auto;border-radius:6px}
 dialog p{text-align:center;margin:.6rem 0 0}
@@ -118,8 +128,8 @@ footer{background:var(--deep);color:#8d98b4;text-align:center;padding:1.2rem;fon
 <div>
 <h1>Varun <span>K</span></h1>
 <p class="lead">An academic leader who builds systems that work, from CBSE compliance to AI in the classroom.</p>
-<a class="btn pri" href="#videos" data-play="1">Self Intro Video</a><a class="btn sec" href="#videos" data-play="2">Demo Video</a><a class="btn sec cv" href="#" target="_blank" rel="noopener" hidden>View CV</a>
-<div class="award"><span>Educational Reformer of the Year 2021, Times of India</span></div>
+<button type="button" class="btn pri" data-play="1">Self Intro Video</button><button type="button" class="btn sec" data-play="2">Demo Video</button><a class="btn sec cv" href="#" target="_blank" rel="noopener" hidden>View CV</a>
+<div class="award"><span>Mob: +91 95859 62256   |   Email: k.varunn@gmail.com</span></div>
 </div>
 <div class="photo" aria-label="Portrait of Varun K">VK<img id="pimg" alt="Varun K" hidden></div>
 </div></header>
@@ -139,7 +149,8 @@ footer{background:var(--deep);color:#8d98b4;text-align:center;padding:1.2rem;fon
 <section id="about"><div class="wrap about">
 <div><h2>About me</h2>
 <p>I am an academic leader who has worked across the whole school: as teacher, coordinator, Vice Principal and now Principal. My earlier years in corporate HR and in English training and EdTech shape how I manage people and run schools with discipline.</p>
-<p>I like practical solutions: clubs students actually join, tools that save teachers time, and student projects that solve real school problems. Today I focus on bringing AI into the school ecosystem in a practical, future-ready way.</p></div>
+<p>I like practical solutions: clubs students actually join, tools that save teachers time, and student projects that solve real school problems. Today I focus on bringing AI into the school ecosystem in a practical, future-ready way.</p>
+<p>Outside school I am a bird photographer, and I enjoy making things by hand: wall painting, metal art and carpentry.</p></div>
 <div><h2>Where I add value</h2>
 <ul class="tags">
 <li>School management</li><li>CBSE protocols</li><li>Curriculum design</li><li>Teacher recruitment and training</li><li>Year planning</li><li>Career counselling</li><li>EdTech and AI integration</li><li>Cloud platforms and LMS</li><li>Parent engagement</li><li>Community outreach</li><li>HR and employee relations</li><li>E-learning strategy</li><li>Mentorship and performance management</li></ul></div>
@@ -155,7 +166,7 @@ footer{background:var(--deep);color:#8d98b4;text-align:center;padding:1.2rem;fon
 <div class="grid">
 <div class="card big"><h3>World's first OSINT School Club</h3><p>Conceptualized and launched a club that introduces open-source intelligence skills to school students. This work earned the Educational Reformer of the Year 2021 award.</p></div>
 <div class="card big"><h3>35+ student-built web apps</h3><p>Founded and scaled a GitHub repository of student-built apps that solve real school challenges and promote peer-driven digital learning. <a href="https://empowerlifeskills.github.io/" target="_blank" rel="noopener"><b>View the apps</b></a></p></div>
-<div class="card big"><h3>NASA Space Apps Challenge</h3><p>Guided a team of middle school students to the finals of the Chennai edition in 2025, and took part again in 2026.</p></div>
+<div class="card big"><h3>NASA Space Apps Challenge</h3><p>Guided a team of middle school students to the finals of the Chennai edition in 2025, and took part again in 2026. <a href="https://www.spaceappschallenge.org/2026/find-a-team/hyperflood/" target="_blank" rel="noopener"><b>View the 2026 team</b></a></p></div>
 <div class="card big"><h3>Safe Diwali mime</h3><p>Choreographed a student mime on cracker safety. Schools across Tamil Nadu have used it as a reference and replicated it more than 250 times.</p></div>
 <div class="card"><h3>Replacement for the QR code system</h3><p>Conceptualized an alternative that improves teacher, student and parent engagement. <a href="https://sites.google.com/view/titatov3/" target="_blank" rel="noopener"><b>See the project</b></a></p></div>
 <div class="card"><h3>Atal Tinkering Lab</h3><p>Set up and implemented the lab so students could build and test their own ideas in robotics and electronics.</p></div>
@@ -166,8 +177,8 @@ footer{background:var(--deep);color:#8d98b4;text-align:center;padding:1.2rem;fon
 </div></div></section>
 
 <section id="videos" style="padding-top:0"><div class="wrap">
-<h2>Videos</h2><p class="sub">Select a video to watch it here on the page.</p>
-<div class="grid" id="vids"></div>
+<h2>Videos</h2><p class="sub">Scroll sideways and select a video to watch it here on the page.</p>
+<div class="car"><button class="cn p" id="vprev" aria-label="Previous">&#8249;</button><div class="track" id="vids" tabindex="0" aria-label="Videos, scroll sideways"></div><button class="cn n" id="vnext" aria-label="Next">&#8250;</button></div>
 </div></section>
 
 <section id="kovai" style="padding-top:0"><div class="wrap">
@@ -178,8 +189,8 @@ footer{background:var(--deep);color:#8d98b4;text-align:center;padding:1.2rem;fon
 </div></div></section>
 
 <section id="gallery" style="padding-top:0"><div class="wrap">
-<h2>Gallery</h2><p class="sub">Events, classrooms and student achievements.</p>
-<div class="chips" id="chips"></div><div class="gal" id="gal"></div>
+<h2>Gallery</h2><p class="sub">Moments from my career, along with my photography and craft. Select a tile to view it.</p>
+<div class="car"><button class="cn p" id="gprev" aria-label="Previous">&#8249;</button><div class="track" id="gal" tabindex="0" aria-label="Gallery, scroll sideways"></div><button class="cn n" id="gnext" aria-label="Next">&#8250;</button></div>
 </div></section>
 
 <section id="credentials" style="padding-top:0"><div class="wrap">
@@ -209,14 +220,24 @@ footer{background:var(--deep);color:#8d98b4;text-align:center;padding:1.2rem;fon
    "Anyone with the link", copy the link, and paste it below. Full links or bare file IDs both work.
    VIDEOS: paste the YouTube video ID (the part after v= in the link) in "id", or a Drive video file ID in "drive". */
 const PROFILE = "https://drive.google.com/file/d/1VKtKdCxpZIByctEN6cXeyVdbJkn1RvWH/view";   // Drive link to your portrait
-const CV_URL  = "";   // Drive link to your CV (PDF); the CV buttons stay hidden until this is filled
+const CV_URL  = "https://drive.google.com/file/d/1_2D9oEdXmfiwdpFi42Yb-rxsKc1pZDEO/view";   // Drive link to your CV (PDF); the CV buttons stay hidden until this is filled
 const VIDEOS = [
   {id:"9YBPypThWTo", title:"Safe Diwali: a mime by students of Class VII and VIII", caption:"Choreographed by me. Over 63,000 views, used as a reference by schools across Tamil Nadu and replicated more than 250 times."},
   {drive:"1bzjZ8maFpFhFfdPSqFuzzrNyfKHpd8kO", title:"Self Intro Video", caption:"A short introduction to my work and approach"},
-  {drive:"17H0A3TLCDjZ6OlE3bzQ9fVgzPkfEAeLQ", title:"Demo Video", caption:"A walkthrough of student projects and school tools"}
+  {drive:"17H0A3TLCDjZ6OlE3bzQ9fVgzPkfEAeLQ", title:"Demo Video", caption:"A walkthrough of student projects and school tools"},
+  {fb:"https://www.facebook.com/share/v/18kHjtDPJX/", title:"Bird photography: video collage", caption:"A collage of my bird photographs"},
+  {fb:"https://www.facebook.com/share/v/1Jg1ijucxL/", title:"Wall painting", caption:"A wall painting I created"},
+  {fb:"https://www.facebook.com/share/v/1EEfWeW6ga/", title:"Carpentry", caption:"Woodwork I made"}
 ];
 const GALLERY = [
-  // {src:"https://drive.google.com/file/d/FILE_ID/view", cat:"Events", cap:"Annual Day"},
+  // Drive image:    {src:"https://drive.google.com/file/d/FILE_ID/view", cat:"Events", cap:"Annual Day"},
+  // Facebook post:  {fb:"https://www.facebook.com/share/p/XXXX/", thumb:"Drive link of the picture", cap:"Title", desc:"One line description"},
+  {fb:"https://www.facebook.com/share/p/1ERaUkCkj4/", cat:"Awards", cap:"Educational Reformer of the Year 2021", desc:"Receiving the Times of India award"},
+  {fb:"https://www.facebook.com/share/p/1JaDz8G5VJ/", cat:"Awards", cap:"Award ceremony, 2021", desc:"Educational Reformer of the Year, Times of India"},
+  {fb:"https://www.facebook.com/share/1A4zb2Bwot/", cat:"Photography", cap:"Nature photography", desc:"A moment from nature, seen through my lens"},
+  {fb:"https://www.facebook.com/share/p/19WANuEwUY/", cat:"Photography", cap:"Wildlife photography", desc:"A wildlife moment I photographed"},
+  {fb:"https://www.facebook.com/share/p/1JNn1mDyGX/", cat:"Photography", cap:"Aircraft in flight", desc:"A plane high in the sky"},
+  {fb:"https://www.facebook.com/share/p/1d6t8fMzJW/", cat:"Art and craft", cap:"Metal art", desc:"A metal artwork I created"},
 ];
 const CERTS = [
   // {src:"https://drive.google.com/file/d/FILE_ID/view", cap:"Educational Reformer of the Year 2021"},
@@ -259,25 +280,27 @@ $("#tl").innerHTML=ROLES.map(r=>`<div class="role${r.lead?" lead":""}"><button a
 document.querySelectorAll(".role button").forEach(b=>b.onclick=()=>{const p=b.parentElement,o=p.classList.toggle("open");b.setAttribute("aria-expanded",o)});
 
 /* videos */
-const vthumb=v=>v.id?`https://i.ytimg.com/vi/${v.id}/hqdefault.jpg`:pic(v.drive,640);
-const vsrc=v=>v.id?`https://www.youtube-nocookie.com/embed/${encodeURIComponent(v.id)}?autoplay=1&rel=0`:`https://drive.google.com/file/d/${encodeURIComponent(v.drive)}/preview`;
-function play(i){const v=VIDEOS[i];if(!v||!(v.id||v.drive))return;openDlg(`<iframe src="${esc(vsrc(v))}" title="${esc(v.title)}" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe>`,v.title)}
-$("#vids").innerHTML=VIDEOS.map((v,i)=>(v.id||v.drive)?`<button class="vcard" data-i="${i}"><div class="th" style="background-image:url(${esc(vthumb(v))})"></div><div class="tx"><h3>${esc(v.title)}</h3><p>${esc(v.caption)}</p></div></button>`:`<div class="empty">Video ${i+1}: add a YouTube ID in index.html</div>`).join("");
-document.querySelectorAll(".vcard").forEach(b=>b.onclick=()=>play(+b.dataset.i));
+const has=v=>v.id||v.drive||v.fb;
+const vthumb=v=>v.id?`https://i.ytimg.com/vi/${v.id}/hqdefault.jpg`:v.drive?pic(v.drive,640):"";
+const vsrc=v=>v.id?`https://www.youtube-nocookie.com/embed/${encodeURIComponent(v.id)}?autoplay=1&rel=0`:v.drive?`https://drive.google.com/file/d/${encodeURIComponent(v.drive)}/preview`:`https://www.facebook.com/plugins/video.php?href=${encodeURIComponent(v.fb)}&show_text=false&autoplay=true`;
+const extLink=v=>v.drive?`https://drive.google.com/file/d/${encodeURIComponent(v.drive)}/view`:v.fb||"";
+function play(i){const v=VIDEOS[i];if(!v||!has(v))return;openDlg(`<iframe src="${esc(vsrc(v))}" title="${esc(v.title)}" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe>`,v.title);const l=extLink(v);if(l)cap.insertAdjacentHTML("beforeend",` <a href="${esc(l)}" target="_blank" rel="noopener" style="color:var(--accent)">${v.fb?"Open on Facebook":"Open in Google Drive"}</a>`)}
+function slide(i,t,d,th,vid){return `<button class="sl${vid?" vid":""}" data-i="${i}" aria-label="${esc(t)}">${th?`<img src="${esc(th)}" alt="" loading="lazy">`:""}<span class="cap"><b>${esc(t)}</b><span>${esc(d||"")}</span></span></button>`}
+function wire(trk,pv,nx){function go(d){const sl=[...trk.children].filter(e=>e.tagName==="BUTTON");if(!sl.length)return;const c=trk.scrollLeft+trk.clientWidth/2;let cur=0,best=1e9;sl.forEach((e,i)=>{const m=Math.abs(e.offsetLeft+e.offsetWidth/2-c);if(m<best){best=m;cur=i}});const n=Math.max(0,Math.min(sl.length-1,cur+d));trk.scrollTo({left:sl[n].offsetLeft+sl[n].offsetWidth/2-trk.clientWidth/2,behavior:"smooth"})}
+pv.onclick=()=>go(-1);nx.onclick=()=>go(1);trk.addEventListener("keydown",e=>{if(e.key==="ArrowRight"){e.preventDefault();go(1)}if(e.key==="ArrowLeft"){e.preventDefault();go(-1)}})}
+$("#vids").innerHTML=VIDEOS.map((v,i)=>has(v)?slide(i,v.title,v.caption,vthumb(v),1):`<div class="empty">Video ${i+1}: add a video in index.html</div>`).join("");
+document.querySelectorAll("#vids>button").forEach(b=>b.onclick=()=>play(+b.dataset.i));
+wire($("#vids"),$("#vprev"),$("#vnext"));
 document.querySelectorAll("[data-play]").forEach(a=>a.onclick=e=>{e.preventDefault();play(+a.dataset.play)});
 
 /* gallery + certs */
-function tiles(el,list){el.innerHTML=list.length?list.map((g,i)=>`<button data-i="${i}" aria-label="${esc(g.cap||"Open image")}"><img src="${esc(pic(g.src,600))}" alt="${esc(g.cap||"")}" loading="lazy"></button>`).join(""):`<div class="empty">Add Google Drive links to the list in this file</div>`;
- el.querySelectorAll("button").forEach(b=>b.onclick=()=>{const g=list[b.dataset.i];openDlg(`<img src="${esc(pic(g.src,1600))}" alt="${esc(g.cap||"")}">`,g.cap)})}
-const cats=["All",...new Set(GALLERY.map(g=>g.cat).filter(Boolean))];
-function showCat(c){tiles($("#gal"),c==="All"?GALLERY:GALLERY.filter(g=>g.cat===c));document.querySelectorAll(".chip").forEach(x=>x.setAttribute("aria-pressed",x.textContent===c))}
-$("#chips").innerHTML=cats.length>2?cats.map(c=>`<button class="chip">${esc(c)}</button>`).join(""):"";
-document.querySelectorAll(".chip").forEach(c=>c.onclick=()=>showCat(c.textContent));
-showCat("All");tiles($("#certs"),CERTS);
-const trk=$("#certs");
-function go(d){const sl=[...trk.children].filter(e=>e.tagName==="BUTTON");if(!sl.length)return;const c=trk.scrollLeft+trk.clientWidth/2;let cur=0,best=1e9;sl.forEach((e,i)=>{const m=Math.abs(e.offsetLeft+e.offsetWidth/2-c);if(m<best){best=m;cur=i}});const n=Math.max(0,Math.min(sl.length-1,cur+d));trk.scrollTo({left:sl[n].offsetLeft+sl[n].offsetWidth/2-trk.clientWidth/2,behavior:"smooth"})}
-$("#cprev").onclick=()=>go(-1);$("#cnext").onclick=()=>go(1);
-trk.addEventListener("keydown",e=>{if(e.key==="ArrowRight"){e.preventDefault();go(1)}if(e.key==="ArrowLeft"){e.preventDefault();go(-1)}});
+function openG(g){if(g.fb){openDlg(`<iframe class="fbp" src="https://www.facebook.com/plugins/post.php?href=${encodeURIComponent(g.fb)}&show_text=true&width=500" title="${esc(g.cap||"")}" allowfullscreen></iframe>`,g.cap+(g.desc?": "+g.desc:""));cap.insertAdjacentHTML("beforeend",` <a href="${esc(g.fb)}" target="_blank" rel="noopener" style="color:var(--accent)">Open on Facebook</a>`)}else openDlg(`<img src="${esc(pic(g.src,1600))}" alt="${esc(g.cap||"")}">`,g.cap)}
+$("#gal").innerHTML=GALLERY.length?GALLERY.map((g,i)=>slide(i,g.cap,g.desc,(g.src||g.thumb)?pic(g.src||g.thumb,800):"")).join(""):`<div class="empty">Add Google Drive links to the list in this file</div>`;
+document.querySelectorAll("#gal>button").forEach(b=>b.onclick=()=>openG(GALLERY[b.dataset.i]));
+wire($("#gal"),$("#gprev"),$("#gnext"));
+$("#certs").innerHTML=CERTS.length?CERTS.map((g,i)=>`<button data-i="${i}" aria-label="${esc(g.cap||"Open certificate")}"><img src="${esc(pic(g.src,600))}" alt="${esc(g.cap||"")}" loading="lazy"></button>`).join(""):`<div class="empty">Add Google Drive links to the list in this file</div>`;
+document.querySelectorAll("#certs>button").forEach(b=>b.onclick=()=>{const g=CERTS[b.dataset.i];openDlg(`<img src="${esc(pic(g.src,1600))}" alt="${esc(g.cap||"")}">`,g.cap)});
+wire($("#certs"),$("#cprev"),$("#cnext"));
 
 /* counters */
 const yrs=new Date().getFullYear()-2001;
