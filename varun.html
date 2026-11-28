@@ -121,7 +121,7 @@ footer{background:var(--deep);color:#8d98b4;text-align:center;padding:1.2rem;fon
 </head>
 <body>
 <nav><div class="wrap"><b>Varun K</b>
-<div class="links"><a href="#about">About</a><a href="#journey">Journey</a><a href="#work">Initiatives</a><a href="#videos">Videos</a><a href="#kovai">Kovai Kathaigal</a><a href="#gallery">Gallery</a><a href="#credentials">Credentials</a><a href="#contact">Contact</a></div>
+<div class="links"><a href="#about">About</a><a href="#journey">Journey</a><a href="#work">Initiatives</a><a href="#videos">Videos</a><a href="#kovai">Kovai Kathaigal</a><a href="#credentials">Credentials</a><a href="#contact">Contact</a></div>
 <button class="theme" id="theme" aria-label="Switch light or dark mode">Dark mode</button></div></nav>
 
 <header class="hero"><div class="wrap">
@@ -188,11 +188,6 @@ footer{background:var(--deep);color:#8d98b4;text-align:center;padding:1.2rem;fon
 <div><a class="btn pri" id="insta" href="https://www.instagram.com/" target="_blank" rel="noopener" style="margin-top:.6rem">Follow on Instagram</a></div>
 </div></div></section>
 
-<section id="gallery" style="padding-top:0"><div class="wrap">
-<h2>Gallery</h2><p class="sub">Moments from my career, along with my photography and craft. Select a tile to view it.</p>
-<div class="car"><button class="cn p" id="gprev" aria-label="Previous">&#8249;</button><div class="track" id="gal" tabindex="0" aria-label="Gallery, scroll sideways"></div><button class="cn n" id="gnext" aria-label="Next">&#8250;</button></div>
-</div></section>
-
 <section id="credentials" style="padding-top:0"><div class="wrap">
 <h2>Credentials</h2><p class="sub">Qualifications, awards and certificates.</p>
 <div class="grid" style="margin-bottom:2rem">
@@ -228,16 +223,6 @@ const VIDEOS = [
   {fb:"https://www.facebook.com/share/v/18kHjtDPJX/", title:"Bird photography: video collage", caption:"A collage of my bird photographs"},
   {fb:"https://www.facebook.com/share/v/1Jg1ijucxL/", title:"Wall painting", caption:"A wall painting I created"},
   {fb:"https://www.facebook.com/share/v/1EEfWeW6ga/", title:"Carpentry", caption:"Woodwork I made"}
-];
-const GALLERY = [
-  // Drive image:    {src:"https://drive.google.com/file/d/FILE_ID/view", cat:"Events", cap:"Annual Day"},
-  // Facebook post:  {fb:"https://www.facebook.com/share/p/XXXX/", thumb:"Drive link of the picture", cap:"Title", desc:"One line description"},
-  {fb:"https://www.facebook.com/share/p/1ERaUkCkj4/", cat:"Awards", cap:"Educational Reformer of the Year 2021", desc:"Receiving the Times of India award"},
-  {fb:"https://www.facebook.com/share/p/1JaDz8G5VJ/", cat:"Awards", cap:"Award ceremony, 2021", desc:"Educational Reformer of the Year, Times of India"},
-  {fb:"https://www.facebook.com/share/1A4zb2Bwot/", cat:"Photography", cap:"Nature photography", desc:"A moment from nature, seen through my lens"},
-  {fb:"https://www.facebook.com/share/p/19WANuEwUY/", cat:"Photography", cap:"Wildlife photography", desc:"A wildlife moment I photographed"},
-  {fb:"https://www.facebook.com/share/p/1JNn1mDyGX/", cat:"Photography", cap:"Aircraft in flight", desc:"A plane high in the sky"},
-  {fb:"https://www.facebook.com/share/p/1d6t8fMzJW/", cat:"Art and craft", cap:"Metal art", desc:"A metal artwork I created"},
 ];
 const CERTS = [
   // {src:"https://drive.google.com/file/d/FILE_ID/view", cap:"Educational Reformer of the Year 2021"},
@@ -294,10 +279,6 @@ wire($("#vids"),$("#vprev"),$("#vnext"));
 document.querySelectorAll("[data-play]").forEach(a=>a.onclick=e=>{e.preventDefault();play(+a.dataset.play)});
 
 /* gallery + certs */
-function openG(g){if(g.fb){openDlg(`<iframe class="fbp" src="https://www.facebook.com/plugins/post.php?href=${encodeURIComponent(g.fb)}&show_text=true&width=500" title="${esc(g.cap||"")}" allowfullscreen></iframe>`,g.cap+(g.desc?": "+g.desc:""));cap.insertAdjacentHTML("beforeend",` <a href="${esc(g.fb)}" target="_blank" rel="noopener" style="color:var(--accent)">Open on Facebook</a>`)}else openDlg(`<img src="${esc(pic(g.src,1600))}" alt="${esc(g.cap||"")}">`,g.cap)}
-$("#gal").innerHTML=GALLERY.length?GALLERY.map((g,i)=>slide(i,g.cap,g.desc,(g.src||g.thumb)?pic(g.src||g.thumb,800):"")).join(""):`<div class="empty">Add Google Drive links to the list in this file</div>`;
-document.querySelectorAll("#gal>button").forEach(b=>b.onclick=()=>openG(GALLERY[b.dataset.i]));
-wire($("#gal"),$("#gprev"),$("#gnext"));
 $("#certs").innerHTML=CERTS.length?CERTS.map((g,i)=>`<button data-i="${i}" aria-label="${esc(g.cap||"Open certificate")}"><img src="${esc(pic(g.src,600))}" alt="${esc(g.cap||"")}" loading="lazy"></button>`).join(""):`<div class="empty">Add Google Drive links to the list in this file</div>`;
 document.querySelectorAll("#certs>button").forEach(b=>b.onclick=()=>{const g=CERTS[b.dataset.i];openDlg(`<img src="${esc(pic(g.src,1600))}" alt="${esc(g.cap||"")}">`,g.cap)});
 wire($("#certs"),$("#cprev"),$("#cnext"));
